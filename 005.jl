@@ -14,11 +14,19 @@ function f(max)
     base = merge_factors(prod(li), base)
 end
 
+function fastest(max)
+    li   = primes(max)
+    base = reduce(lcm, setdiff(Set(2:max), Set(li)))
+    lcm(base, prod(li))
+end
 
 function main()
-    println(@elapsed f(20))
+    max = 43
+    # println(@elapsed f(max))
     # its important to remember lcm exists and it's value
-    println(@elapsed reduce(lcm, 1:20))
+    simplest(max) = reduce(lcm, 1:max)
+    println(@elapsed simplest)
+    println(@elapsed fastest(max))
 end
 
 main()
