@@ -11,8 +11,8 @@ function digit_range(digits::Int)
     base^(digits-1), base^(digits)-1
 end
 
-function gpn(min::Int, max::Int)
-    #= greatest palendrome number =#
+function gppn(min::Int, max::Int)
+    # greatest product palendrome number
     ret::Int = 0
     for i::Int in reverse(min:max)
         values = filter(palendrome, [i*j for j in i:max])
@@ -24,7 +24,8 @@ function gpn(min::Int, max::Int)
 end
 
 function main()
-    println(gpn(digit_range(3)...)) # example of unpacking tuple
+    # example of unpacking tuple
+    println(gppn(digit_range(3)...))
 end
 
 main()
