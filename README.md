@@ -1,2 +1,2 @@
 # euler-julia
-Julia project euler solutions
+Excuse to learn julia
