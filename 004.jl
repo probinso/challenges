@@ -1,9 +1,9 @@
 # Project Euler 004
 
-function palendrome(value::Int)
-    str::AbstractString = string(value)
-    mid::Int = div(length(str), 2)
-    str[1:mid] == reverse(str)[1:mid]
+function palendrome{T<:Integer}(value::T)
+    arr = digits(value)
+    mid::Int = div(length(arr), 2)
+    arr[1:mid] == reverse(arr)[1:mid]
 end
 
 function digit_range(digits::Int)
