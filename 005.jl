@@ -25,7 +25,7 @@ function main()
     # println(@elapsed f(max))
     # its important to remember lcm exists and it's value
     simplest(max) = reduce(lcm, 1:max)
-    println(@elapsed simplest)
+    println(@elapsed simplest(max))
     println(@elapsed fastest(max))
 end
 
