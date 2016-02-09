@@ -1,5 +1,20 @@
 #!/usr/bin/env julia
 
+function readfile(filename)
+    f = open(filename)
+    str = ""
+    while !eof(f)
+        str = readuntil(f, ",")
+        if str[end] != ','
+            break
+        end
+        produce(str[2:end-2])
+    end
+    produce(str[2:end-1])
+    close(f)
+end
+
+
 function solution(filename::AbstractString="p022_names.txt")
 
     function score(name::AbstractString)
@@ -7,17 +22,14 @@ function solution(filename::AbstractString="p022_names.txt")
         sum(map(char_score, collect(name)))
     end
 
-    function readfile(filename)
-        f = open(filename)
-        names = readlines(f)
-        close(f)
-        sort(names)
-    end
+    f(index, name) = index*score(name)
 
-    names = readfile(filename)
-    println(names[938])
-    #f(tup) = tup[1]*score(tup[2])
-    #sum(map(f, enumerate(names)))
+    names = [name for name = collect(@task readfile(filename))]
+    acc = 0
+    for (index, name) in enumerate(sort(names))
+        acc += index*score(name)
+    end
+    acc
 end
 
-solution()
+println(solution())
