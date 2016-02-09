@@ -2,13 +2,13 @@
 
 function solution{I<:Integer}(max::I=100)
     spaces = ndigits(max)
-    function CracklePop(input::I)
-        c = mod(input, 3) != 0 ? "" : "Fizz"
-        p = mod(input, 5) != 0 ? "" : "Buzz"
+    function FizzBuzz(input::I, fizz::AbstractString="Fizz", buzz::AbstractString="Buzz")
+        c = mod(input, 3) != 0 ? "" : fizz
+        p = mod(input, 5) != 0 ? "" : buzz
         " "^(spaces-ndigits(input))*"$(input) $(c)$(p)"
     end
     for i in 1:max
-        println(CracklePop(i))
+        println(FizzBuzz(i))
     end
 end
 
