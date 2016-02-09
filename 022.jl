@@ -3,9 +3,10 @@
 function readfile(filename)
     f = open(filename)
     str = ""
+    term = ','
     while !eof(f)
-        str = readuntil(f, ",")
-        if str[end] != ','
+        str = readuntil(f, term)
+        if str[end] != term
             break
         end
         produce(str[2:end-2])
