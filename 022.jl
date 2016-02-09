@@ -1,6 +1,7 @@
 #!/usr/bin/env julia
 
 function readfile(filename)
+    #= generators are lower memory profile =#
     f = open(filename)
     term = ','
     str = readuntil(f, term)
