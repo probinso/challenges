@@ -8,7 +8,7 @@ function solution{I<:Integer}(max::I=100)
         " "^(spaces-ndigits(input))*"$(input) $(c)$(p)"
     end
     for i in 1:max
-        println(FizzBuzz(i))
+        println(FizzBuzz(i, "Crackle", "Pop"))
     end
 end
 
