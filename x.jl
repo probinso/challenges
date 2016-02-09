@@ -2,7 +2,7 @@
 
 function solution{I<:Integer}(max::I=100)
     spaces = ndigits(max)
-    function FizzBuzz(input, fizz::AbstractString="Fizz", buzz::AbstractString="Buzz")
+    function FizzBuzz{S<:AbstractString}(input, fizz::S="Fizz", buzz::S="Buzz")
         c = mod(input, 3) != 0 ? "" : fizz
         p = mod(input, 5) != 0 ? "" : buzz
         " "^(spaces-ndigits(input))*"$(input) $(c)$(p)"
