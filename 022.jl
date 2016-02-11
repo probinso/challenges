@@ -58,7 +58,7 @@ end
 
 function solution(filename::AbstractString="p022_names.txt")
 
-    tree::BSTree = Nil{Any}()
+    tree::BSTree = Nil{AbstractString}()
     for name in @task readfile(filename)
         tree = insert!(name, tree)
     end
