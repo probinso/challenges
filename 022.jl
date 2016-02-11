@@ -33,16 +33,10 @@ end
 
 inorder(tree::Nil) = nothing
 function inorder(tree::Node)
-    if !isa(tree.left, Nil)
-        inorder(tree.left)
-    end
+    inorder(tree.left)
     produce(tree.value)
-
-    if !isa(tree.right, Nil)
-        inorder(tree.right)
-    end
+    inorder(tree.right)
 end
-
 
 
 function readfile(filename)
