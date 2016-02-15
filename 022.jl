@@ -1,10 +1,19 @@
 #!/usr/bin/env julia
 
-abstract BSTree{T}
+#=
+using Traits
 
-type Nil{T} <: BSTree{T}
+@traitdef Cmp{X,Y} begin
+    @constraints begin
+        X == Y
+    end
+    X < Y -> Bool
+    # @assert istrait(Cmp{T,T}) == true
 end
+=#
 
+abstract BSTree{T}
+type Nil{T}  <: BSTree{T} end
 type Node{T} <: BSTree{T}
     value::T
     left ::BSTree{T}
@@ -39,24 +48,36 @@ function inorder(tree::Node)
 end
 
 
-function readfile(filename)
+function remChar{T<:AbstractString}(str::T, c::Char...)
+    value::T = ""
+    for i = 1:endof(str)
+        try
+            if str[i] != c
+                value = string(value, str[i])
+            end
+        catch
+            #ignore the index error
+        end
+    end
+    value
+end
+
+
+function readfile(filename::AbstractString)
     #= generators are lower memory profile =#
     f = open(filename)
     term = ','
     str = readuntil(f, term)
     while !eof(f)
-        produce(str[2:end-2])
+        str = remChar(str,), ' ', ',')
+        produce(str)
         str = readuntil(f, term)
-        if str[end] != term
-            break
-        end
     end
-    produce(str[2:end-1])
     close(f)
 end
 
 
-function solution(filename::AbstractString="p022_names.txt")
+function solution(filename="p022_names.txt")
 
     tree::BSTree = Nil{AbstractString}()
     for name in @task readfile(filename)
