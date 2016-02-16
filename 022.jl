@@ -56,7 +56,7 @@ function readfile(filename::AbstractString)
     #= generators have lower memory profile =#
     f = open(filename)
 
-    const terms = [' ', '"',',']
+    const terms = [' ', '"', ',']
     str  = readuntil(f, terms[end])
     while !eof(f)
         for nc = terms
