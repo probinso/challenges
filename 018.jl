@@ -5,7 +5,8 @@ function parselines(filename::AbstractString="067.input", T::Type=Int)
     f = open(filename)
     while !eof(f)
         line = readline(f)
-        produce(map(x -> parse(T, x), split(line))) # splits on spaces and casts to T
+        # splits on spaces and casts to T
+        produce(map(x -> parse(T, x), split(line)))
     end
 end
 
