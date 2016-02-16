@@ -48,30 +48,19 @@ function inorder(tree::Node)
 end
 
 
-function remChar{T<:AbstractString}(str::T, c::Char...)
-    value::T = ""
-    for i = 1:endof(str)
-        try
-            if str[i] != c
-                value = string(value, str[i])
-            end
-        catch
-            #ignore the index error
-        end
-    end
-    value
-end
-
-
 function readfile(filename::AbstractString)
-    #= generators are lower memory profile =#
+    #= generators have lower memory profile =#
     f = open(filename)
-    term = ','
-    str = readuntil(f, term)
+
+    const terms = [' ', '"',',']
+    str  = readuntil(f, terms[end])
     while !eof(f)
-        str = remChar(str,), ' ', ',')
+        for nc = terms
+            str = filter(x -> x != nc, str)
+        end
+
         produce(str)
-        str = readuntil(f, term)
+        str = readuntil(f, terms[end])
     end
     close(f)
 end
