@@ -36,11 +36,10 @@ end
 
 function insert{T}(value::T, tree::Node{T})
     if value < tree.value
-        return Node(value, insert(value, tree.left), tree.right)
+        return Node(tree.value, insert(value, tree.left), tree.right)
     elseif value > tree.value
-        return Node(value, tree.left, insert(value, tree.right))
+        return Node(tree.value, tree.left, insert(value, tree.right))
     end
-    tree
 end
 
 
