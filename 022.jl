@@ -13,7 +13,7 @@ end
 =#
 
 abstract BSTree{T}
-immutable Nil{T}  <: BSTree{T} end
+immutable Leaf{T} <: BSTree{T} end
 immutable Node{T} <: BSTree{T}
     value::T
     left ::BSTree{T}
@@ -22,13 +22,13 @@ end
 
 
 isempty(tree::Node) = false
-isempty(tree::Nil)  = true
+isempty(tree::Leaf) = true
 
 
-function insert{T}(value::T, tree::Nil{T})
+function insert{T}(value::T, tree::Leaf{T})
     #=
-    It is nessicary to define retval as a BSTree.
-    By default the constructor returns type Node.
+    It is nessicary to cast retval as a BSTree.
+    By default the constructor produces Node type.
     =#
     retval::BSTree = Node(value, tree, tree)
 end
@@ -46,7 +46,7 @@ function insert{T}(value::T, tree::Node{T})
 end
 
 
-inorder(tree::Nil) = nothing
+inorder(tree::Leaf) = nothing
 function inorder(tree::Node)
     inorder(tree.left)
     produce(tree.value)
@@ -74,7 +74,7 @@ end
 
 function solution(filename="p022_names.txt")
 
-    tree::BSTree = Nil{AbstractString}()
+    tree::BSTree = Leaf{AbstractString}()
     for name in @task readfile(filename)
         tree = insert(name, tree)
     end
