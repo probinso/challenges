@@ -30,7 +30,7 @@ function insert{T}(value::T, tree::Nil{T})
     It is nessicary to define retval as a BSTree.
     By default the constructor returns type Node.
     =#
-    retval::BSTree = Node{T}(value, Nil{T}(), Nil{T}())
+    retval::BSTree = Node(value, tree, tree)
 end
 
 
