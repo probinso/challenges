@@ -26,11 +26,7 @@ isempty(tree::Leaf) = true
 
 
 function insert{T}(value::T, tree::Leaf{T})
-    #=
-    It is nessicary to cast retval as a BSTree.
-    By default the constructor produces Node type.
-    =#
-    retval::BSTree = Node(value, tree, tree)
+    Node(value, tree, tree)
 end
 
 
@@ -73,8 +69,8 @@ end
 
 
 function solution(filename="p022_names.txt")
-
     tree::BSTree = Leaf{AbstractString}()
+
     for name in @task readfile(filename)
         tree = insert(name, tree)
     end
