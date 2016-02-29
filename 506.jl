@@ -1,6 +1,5 @@
 #!/usr/bin/env julia
 
-
 function makeseq(number)
     ds = reverse(digits(number))
     produce(ds[1])
