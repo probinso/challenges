@@ -9,7 +9,7 @@ function makeseq(number)
             produce(i)
         end
         for i in reverse(ds)
-            produce(map(big, i))
+            produce(i)
         end
     end
 end
