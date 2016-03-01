@@ -1,6 +1,5 @@
 #!/usr/bin/env julia
 
-
 function makeseq(number)
     ds = reverse(digits(number))
     produce(ds[1])
@@ -9,7 +8,7 @@ function makeseq(number)
             produce(digit)
         end
         for digit in reverse(ds)
-            produce(map(big, digit))
+            produce(digit)
         end
     end
 end
@@ -47,8 +46,7 @@ function S(n)
 end
 
 v = @task V(1234)
-for i in 1:10^4
-    j = consume(v)
+for i in 1:10^3
+    consume(v)
 end
-println(j)
 #println(mod(S(10000), 123454321))
