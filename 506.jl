@@ -5,11 +5,11 @@ function makeseq(number)
     ds = reverse(digits(number))
     produce(ds[1])
     while true
-        for i in ds[2:end-1]
-            produce(i)
+        for digit in ds[2:end-1]
+            produce(digit)
         end
-        for i in reverse(ds)
-            produce(map(big, i))
+        for digit in reverse(ds)
+            produce(map(big, digit))
         end
     end
 end
@@ -46,4 +46,9 @@ function S(n)
     s
 end
 
-println(mod(S(10000), 123454321))
+v = @task V(1234)
+for i in 1:10^4
+    j = consume(v)
+end
+println(j)
+#println(mod(S(10000), 123454321))
